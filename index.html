@@ -1,20 +1,35 @@
 <!doctype html>
 <html>
-  <head>
-    <title>SPID SP Access Button Example</title>
-    <meta charset="utf-8" />
-    <meta name="color-scheme" content="light dark" />
-    <link rel="stylesheet" type="text/css" href="src/style/spid-button.css" />
-  </head>
 
-  <body>
+<head>
+  <title>SPID/CIE SP Access Button Example</title>
+  <meta charset="utf-8" />
+  <meta name="color-scheme" content="light dark" />
+  <link rel="stylesheet" type="text/css" href="src/style/spid-button.css" />
+</head>
+
+<body>
+  <div id="app"></div>
+
+  <template id="template-spid-button-ita">
     <button class="spid-button">
-      <img src="src/img/spid-ico-circle-bb.svg" alt="SPID logo" />
+      <img src="src/img/spid-ico-circle-bb.svg" alt="Logo SPID" />
       <p>Entra con SPID</p>
     </button>
-    <dialog id="spid-dialog">
-    </dialog>
+  </template>
 
-    <script type="module" src="src/script/main.ts"></script>
-  </body>
+  <template id="template-spid-button-eng">
+    <button class="spid-button">
+      <img src="src/img/spid-ico-circle-bb.svg" alt="SPID logo" />
+      <p>Enter via SPID</p>
+    </button>
+  </template>
+
+  <template id="template-spid-dialog">
+    <dialog id="spid-dialog"></dialog>
+  </template>
+
+  <script type="module" src="src/script/main.ts"></script>
+</body>
+
 </html>

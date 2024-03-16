@@ -1,24 +1,11 @@
 import { fetchProviders } from "./providers";
-import { renderProviders } from "./render";
+import { createButton, initDialog, renderProviders } from "./render";
 import { randomSort } from "./utils";
 
 document.addEventListener("DOMContentLoaded", async () => {
-  const fetchedProviders = await fetchProviders();
-  const providers = randomSort(fetchedProviders);
-  renderProviders(providers);
-});
-
-const spidDialog = document.querySelector("#spid-dialog") as HTMLDialogElement;
-const spidButton = document.querySelectorAll(".spid-button");
-
-for (const button of spidButton) {
-  button.addEventListener("click", () => {
-    spidDialog.showModal();
-  });
-}
-
-spidDialog.addEventListener("click", (event) => {
-  if (event.target === spidDialog) {
-    spidDialog.close();
-  }
+  const providers = randomSort(await fetchProviders());
+  createButton("app", "eng");
+  createButton("app", "ita");
+  const dialog = initDialog();
+  renderProviders(dialog, providers);
 });
