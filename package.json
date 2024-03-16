@@ -1,0 +1,21 @@
+{
+  "name": "@fyblo/spid-cie-button",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "pnpm exec prettier . --write && vite",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "SEE LICENSE IN LICENSE.md",
+  "devDependencies": {
+    "prettier": "^3.2.5",
+    "typescript": "^5.4.2",
+    "vite": "^5.1.6"
+  },
+  "dependencies": {
+    "ofetch": "^1.3.3"
+  }
+}

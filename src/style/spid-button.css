@@ -1,0 +1,95 @@
+@font-face {
+  font-family: "Titillium Web";
+  src: url("../font/TitilliumWeb-SemiBold.ttf") format("truetype");
+}
+
+:root {
+  --spid-button-background: #06c;
+  --spid-button-color: #fff;
+  --spid-button-background-hover: #036;
+  --spid-button-background-active: #83beed;
+  --spid-button-color-active: #036;
+  --spid-button-scale: 1;
+
+  --spid-base-img-size: 3rem;
+}
+
+.spid-button {
+  font-family: "Titillium Web", "Times New Roman";
+  background-color: var(--spid-button-background);
+  color: var(--spid-button-color);
+  display: flex;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+  align-items: center;
+  font-size: calc(1.75rem * var(--spid-button-scale));
+}
+
+.spid-button:hover {
+  background-color: var(--spid-button-background-hover);
+}
+
+.spid-button:active {
+  background-color: var(--spid-button-background-active);
+  color: var(--spid-button-color-active);
+}
+
+.spid-button > img {
+  border-inline-end: rgba(255, 255, 255, 0.1) 0.125rem solid;
+  width: calc(var(--spid-base-img-size) * var(--spid-button-scale));
+  height: calc(var(--spid-base-img-size) * var(--spid-button-scale));
+}
+
+.spid-button > img,
+.spid-button > p {
+  padding-inline: calc(1.25rem * var(--spid-button-scale));
+  padding-block: calc(0.9rem * var(--spid-button-scale));
+}
+
+.spid-button > p {
+  margin: 0;
+  padding-inline-end: calc(2rem * var(--spid-button-scale));
+}
+
+#spid-dialog::backdrop {
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+.spid-providers {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  flex-direction: column;
+  gap: 0;
+  margin: 0;
+  padding: 0;
+}
+
+.spid-providers > li {
+  list-style: none;
+  max-width: 100vw;
+}
+
+.spid-providers > li a {
+  padding-block: 1rem;
+  display: block;
+}
+
+.spid-providers > li a:hover,
+.spid-providers > li a:focus-visible {
+  background-color: var(--spid-button-background-hover);
+}
+
+.spid-providers > li img {
+  width: calc(var(--spid-base-img-size) * 10 * var(--spid-button-scale));
+  max-width: 100%;
+  height: calc(var(--spid-base-img-size) * var(--spid-button-scale));
+}
+
+@media (prefers-color-scheme: dark) {
+  .spid-providers > li a:hover,
+  .spid-providers > li a:focus-visible {
+    background-color: #fff;
+  }
+}
