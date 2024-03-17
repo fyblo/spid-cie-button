@@ -1,5 +1,5 @@
 import { expect, it } from "vitest";
-import { randomSort } from "../src/script/utils";
+import { randomSort } from "../src/utils";
 
 it("shuffles a minimal set", () => {
   const arr = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];

@@ -3,14 +3,20 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "type": "module",
   "scripts": {
-    "dev": "pnpm exec prettier . --write && vite",
+    "dev": "pnpm exec prettier . --write && node server",
+    "build": "npm run build:client && npm run build:server",
+    "build:client": "vite build --ssrManifest --outDir dist/client",
+    "build:server": "vite build --ssr src/entry-server.ts --outDir dist/server",
+    "preview": "NODE_ENV=production node server",
     "test": "vitest"
   },
   "keywords": [],
   "author": "",
   "license": "SEE LICENSE IN LICENSE.md",
   "devDependencies": {
+    "@types/node": "^20.11.28",
     "prettier": "^3.2.5",
     "typescript": "^5.4.2",
     "vite": "^5.1.6",

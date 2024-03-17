@@ -1,11 +1,20 @@
 import type { Provider } from "./providers";
 
-export const renderProviders = async (elem: HTMLElement, providers: Provider[]) => {
-  const list = document.createElement("ul");
-  list.classList.add("spid-providers");
+export const renderDialog = (providers: Provider[]) => {
+  return `
+    <dialog id="spid-dialog">
+      <ul class="spid-providers">
+      ${renderProviders(providers)}
+      </ul>
+    </dialog>
+  `;
+};
+
+const renderProviders = (providers: Provider[]) => {
+  let list = "";
 
   for (const provider of providers) {
-    list.innerHTML += `
+    list += `
     <li>
         <a href="${provider.registry_link}" target="_blank">
             <img src="${provider.logo_uri}" alt="${provider.organization_name}">
@@ -13,9 +22,36 @@ export const renderProviders = async (elem: HTMLElement, providers: Provider[]) 
     </li>
     `;
   }
-  elem.appendChild(list);
+  return list;
 };
 
+/**
+ * Returns the HTML for a SPID button
+ * @param alt the alt text for the button's image
+ * @param label the label for the button
+ * @returns
+ */
+const btnTemplate = (alt: string, label: string) => `
+      <button class="spid-button">
+        <img src="/spid-ico-circle-bb.svg" alt="${alt}" />
+        <p>${label}</p>
+      </button>
+`;
+
+/**
+ * Returns the HTML for a SPID button, based on the language
+ * @param lang the language of the button (`en` or `it`)
+ * @returns the HTML for the button
+ */
+export const renderButton = (lang: "it" | "en") => {
+  if (lang === "en") {
+    return btnTemplate("SPID logo", "Enter via SPID");
+  }
+  if (lang === "it") {
+    return btnTemplate("Logo SPID", "Entra con SPID");
+  }
+  throw new Error(`Language ${lang} not supported`);
+};
 
 /**
  * Generates a new SPID button at the target. It also generates the SPID dialog, if it doesn't exist yet
@@ -37,32 +73,7 @@ export const createButton = (targetId: string, lang: string) => {
   if (!target) throw new Error(`Element with id ${targetId} not found`);
   target.appendChild(clonedBtn);
 
-  if(!document.querySelector("#spid-dialog")) {
+  if (!document.querySelector("#spid-dialog")) {
     document.body.appendChild(clonedDialog);
   }
-};
-
-/**
- * Initializes the SPID dialog and adds event listeners to the buttons
- * @returns the dialog element
- */
-export const initDialog = () => {
-  const spidDialog = document.querySelector(
-    "#spid-dialog",
-  ) as HTMLDialogElement;
-  const spidButton = document.querySelectorAll(".spid-button");
-
-  for (const button of spidButton) {
-    button.addEventListener("click", () => {
-      spidDialog.showModal();
-    });
-  }
-
-  spidDialog.addEventListener("click", (event) => {
-    if (event.target === spidDialog) {
-      spidDialog.close();
-    }
-  });
-
-  return spidDialog;
 };

@@ -1,6 +1,6 @@
 @font-face {
   font-family: "Titillium Web";
-  src: url("../font/TitilliumWeb-SemiBold.ttf") format("truetype");
+  src: url("TitilliumWeb-SemiBold.ttf") format("truetype");
 }
 
 :root {
