@@ -1,6 +1,6 @@
 # spid-cie-button
 
-Minimal component to support SPID and CIE login buttons according to Italian government's standards.
+Minimal component to support SPID and CIE login buttons according to the Italian government's standards.
 
 This project is inspired by [italia/spid-sp-access-button](https://github.com/italia/spid-sp-access-button), with a few key differences:
 
@@ -37,7 +37,7 @@ To control the style, the following CSS variables are available:
   --spid-button-background-hover; /* controls the background of the button on hover */
   --spid-button-background-active; /* controls the background of the button when active/selected */
   --spid-button-color-active; /* controls the text color of the button when active/selected */
-  --spid-button-scale /* controls the scale of the button, change it to increase/reduce the button size (default: 1; numeric value) */
+  --spid-button-scale; /* controls the scale of the button, change it to increase/reduce the button size (default: 1; numeric value) */
 
   --spid-base-img-size; /* default: 3rem; controls the size of the SPID and CIE logos */
 ```
