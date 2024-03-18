@@ -20,8 +20,14 @@
   "module": "dist/client/index.js",
   "types": "dist/client/index.d.ts",
   "exports": {
-    ".":  "./dist/client/index.js",
-    "./server":  "./dist/server/server.js"
+    ".":  {
+      "types": "./dist/client/index.d.ts",
+      "default": "./dist/client/index.js"
+    },
+    "./server":  {
+      "types": "./dist/server/server.d.ts",
+      "default": "./dist/server/server.js"
+    }
   },
   "scripts": {
     "dev": "pnpm exec prettier . --write && node server",
