@@ -2,7 +2,6 @@ import { fetchProviders } from "./providers";
 import { randomSort } from "./utils";
 import { renderDialog as _renderDialog } from "./render";
 import stylesheet from "./spid-button.css?inline";
-import TitilliumWeb from "./TitilliumWeb-SemiBold.ttf?inline";
 
 export { renderButton } from "./render";
 
@@ -15,10 +14,10 @@ export const renderDialog = async () => {
   return _renderDialog(providers);
 };
 
+/**
+ * We import the CSS on the server side to avoid layout shifts
+ * @returns the CSS for the SPID button
+ */
 export const renderHead = () => {
-  return `
-    <style>${stylesheet}</style>
-    <link rel="preload" href="${TitilliumWeb}" as="font" type="font/ttf" crossorigin>
-    <script type="module" src="/src/entry-client.ts"></script>
-  `;
+  return `<style>${stylesheet}</style>`;
 };

@@ -24,3 +24,7 @@ export const initDialog = () => {
 
   return spidDialog;
 };
+
+export default {
+  initDialog,
+};
