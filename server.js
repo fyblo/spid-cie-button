@@ -53,15 +53,15 @@ const createRequestListener = async () => {
           template,
         );
 
-        const { render, renderHead } = await vite.ssrLoadModule(
-          "/src/entry-server.ts",
-        );
-        const { appHtml } = await render();
+        const { renderDialog, renderButton, renderHead } =
+          await vite.ssrLoadModule("/src/entry-server.ts");
+        const appDialog = await renderDialog();
+        const appButton = await renderButton("it", "spid");
         const appHeadHtml = await renderHead();
 
         const html = transformedTemplate.replace(
           "<!--spid-cie-button-ssr-outlet-->",
-          appHtml,
+          appDialog + appButton,
         );
 
         const finalHtml = html.replace(

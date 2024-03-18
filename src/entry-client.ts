@@ -24,6 +24,3 @@ export const initDialog = () => {
 
   return spidDialog;
 };
-
-initDialog();
-console.debug("[DEBUG]: client-side SPID/CIE behaviour initialized.");

@@ -4,18 +4,14 @@
     <title>SPID/CIE SP Access Button Example</title>
     <meta charset="utf-8" />
     <meta name="color-scheme" content="light dark" />
-    <!-- <link
-      rel="preload"
-      href="/TitilliumWeb-SemiBold.ttf"
-      as="font"
-      type="font/ttf"
-      crossorigin
-    />
-   -->
     <!--spid-cie-button-ssr-head-outlet-->
   </head>
 
   <body>
     <div id="app"><!--spid-cie-button-ssr-outlet--></div>
+    <script type="module">
+      import { initDialog } from "./src/entry-client.ts";
+      initDialog();
+    </script>
   </body>
 </html>
