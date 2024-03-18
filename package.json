@@ -12,7 +12,7 @@
   "homepage": "https://github.com/fyblo/spid-cie-button#readme",
   "description": "A web component to authenticate with SPID and CIE",
   "type": "module",
-  "version": "0.2.6",
+  "version": "0.2.7",
   "files": [
     "dist"
   ],
@@ -24,9 +24,19 @@
       "types": "./dist/client/index.d.ts",
       "default": "./dist/client/index.js"
     },
+    "./client": {
+      "types": "./dist/client/index.d.ts",
+      "default": "./dist/client/index.js"
+    },
     "./server": {
       "types": "./dist/server/server.d.ts",
       "default": "./dist/server/server.js"
+    }
+  },
+  "typesVersions": {
+    "*": {
+      "server": ["./dist/server/server.d.ts"],
+      "client": ["./dist/client/index.d.ts"]
     }
   },
   "scripts": {
