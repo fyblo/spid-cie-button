@@ -12,14 +12,15 @@
   "homepage": "https://github.com/fyblo/spid-cie-button#readme",
   "description": "A web component to authenticate with SPID and CIE",
   "type": "module",
-  "version": "0.1.0",
-  "main": "server.js",
+  "version": "0.2.0",
+  "files": ["dist"],
   "scripts": {
     "dev": "pnpm exec prettier . --write && node server",
     "build": "npm run build:client && npm run build:server",
     "build:client": "vite build --ssrManifest --outDir dist/client",
     "build:server": "vite build --ssr src/entry-server.ts --outDir dist/server",
     "preview": "NODE_ENV=production node server",
+    "publish": "pnpm build && npm publish",
     "test": "vitest"
   },
   "keywords": [
