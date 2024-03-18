@@ -14,14 +14,18 @@ export default defineConfig({
     ssr: isServer,
 
     // We want to change the output dir and content based on the build target
-    outDir: isServer ? "dist/server": "dist/client",
+    outDir: isServer ? "dist/server" : "dist/client",
     lib: {
       entry: {
-        ...(!isServer && {index: resolve(__dirname, "src/entry-client.ts")}),
-        ...(isServer && {server: resolve(__dirname, "src/entry-server.ts")}),
+        ...(!isServer && { index: resolve(__dirname, "src/entry-client.ts") }),
+        ...(isServer && { server: resolve(__dirname, "src/entry-server.ts") }),
       },
       // As of 2024, basically only "es" matters
-      formats: [ "es" ], // "cjs", "umd", "iife" ],
+      formats: ["es"], // "cjs", "umd", "iife" ],
+    },
+
+    rollupOptions: {
+      external: ["ofetch"],
     },
   },
   plugins: [
