@@ -12,18 +12,19 @@
   "homepage": "https://github.com/fyblo/spid-cie-button#readme",
   "description": "A web component to authenticate with SPID and CIE",
   "type": "module",
-  "version": "0.2.1",
-  "files": ["dist"],
+  "version": "0.2.2",
+  "files": [
+    "dist"
+  ],
   "exports": {
-    ".": {
-      "import": "./dist/entry-server.js"
-    }
+    ".":  "./dist/index.js",
+    "./server":  "./dist/server.js"
   },
   "scripts": {
     "dev": "pnpm exec prettier . --write && node server",
-    "build": "npm run build:client && npm run build:server",
-    "build:client": "vite build --ssrManifest --outDir dist/client",
-    "build:server": "vite build --ssr src/entry-server.ts --outDir dist/server",
+    "build": "pnpm build:client && pnpm build:server",
+    "build:client": "BUILD_TARGET=client vite build",
+    "build:server": "BUILD_TARGET=server vite build",
     "preview": "NODE_ENV=production node server",
     "release": "pnpm build && npm publish",
     "test": "vitest"
@@ -40,6 +41,7 @@
     "prettier": "^3.2.5",
     "typescript": "^5.4.2",
     "vite": "^5.1.6",
+    "vite-plugin-dts": "^3.7.3",
     "vitest": "^1.4.0"
   },
   "dependencies": {

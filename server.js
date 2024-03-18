@@ -53,17 +53,25 @@ const createRequestListener = async () => {
           template,
         );
 
-        const { render } = await vite.ssrLoadModule("/src/entry-server.ts");
+        const { render, renderHead } = await vite.ssrLoadModule(
+          "/src/entry-server.ts",
+        );
         const { appHtml } = await render();
+        const appHeadHtml = await renderHead();
 
         const html = transformedTemplate.replace(
           "<!--spid-cie-button-ssr-outlet-->",
           appHtml,
         );
 
+        const finalHtml = html.replace(
+          "<!--spid-cie-button-ssr-head-outlet-->",
+          appHeadHtml,
+        );
+
         res.setHeader("Content-Type", "text/html");
         res.writeHead(200);
-        res.end(html);
+        res.end(finalHtml);
       } else {
         res.end();
       }

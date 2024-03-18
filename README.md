@@ -4,7 +4,7 @@ Minimal component to support SPID and CIE login buttons according to the Italian
 
 This project is inspired by [italia/spid-sp-access-button](https://github.com/italia/spid-sp-access-button), with a few key differences:
 
-- It is English-first: while the buttons are provided in Italian as well, the language of the project is English, please refrain from asking any question in a language other than that. 
+- It is English-first: while the buttons are provided in Italian as well, the language of the project is English, please refrain from asking any question in a language other than that.
 - It is written in TypeScript and agnostic to any framework (e.g. no jQuery dependency)
 - It is provided as a standard npm package and can be used in any project
 - It is designed to be easily customizable via CSS variables (see [Usage](#usage))
@@ -12,10 +12,10 @@ This project is inspired by [italia/spid-sp-access-button](https://github.com/it
 - It takes sensible care of performances (e.g. only the required font glyphs are loaded), i.e. the bundle size is approx ~90% smaller than [italia/spid-sp-access-button](https://github.com/italia/spid-sp-access-button).
 - It supports SSR, to minimize the Javascript code delivered to the client
 
-
 ## Usage
 
 ### Installation
+
 ```bash
 npm install spid-cie-button
 # or
@@ -25,12 +25,15 @@ pnpm add spid-cie-button
 ```
 
 ### Basic Usage (SSR)
+
 ```ts
 // todo
 ```
 
 ### Style Customization
+
 To control the style, the following CSS variables are available:
+
 ```css
   --spid-button-background;  /* controls the background of the button */
   --spid-button-color;      /* controls the text color of the button */
