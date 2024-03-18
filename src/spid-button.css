@@ -38,6 +38,7 @@
 }
 
 .spid-button > img {
+  box-sizing: content-box;
   border-inline-end: rgba(255, 255, 255, 0.1) 0.125rem solid;
   width: calc(var(--spid-base-img-size) * var(--spid-button-scale));
   height: calc(var(--spid-base-img-size) * var(--spid-button-scale));
