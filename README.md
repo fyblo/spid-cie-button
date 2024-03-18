@@ -1,4 +1,4 @@
-# spid-cie-button
+# [WIP] SPID/CIE button component
 
 Minimal component to support SPID and CIE login buttons according to the Italian government's standards.
 
