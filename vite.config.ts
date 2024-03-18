@@ -26,6 +26,7 @@ export default defineConfig({
 
     rollupOptions: {
       external: ["ofetch"],
+      ...(isServer && { input: "src/entry-server.ts" }),
     },
   },
   plugins: [
