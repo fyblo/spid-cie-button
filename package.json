@@ -1,5 +1,6 @@
 {
   "name": "@fyblo/spid-cie-button",
+  "private": "false",
   "author": "Fyblo s.r.l. (https://fyblo.com)",
   "license": "SEE LICENSE IN LICENSE.md",
   "repository": {
