@@ -4,14 +4,19 @@ import { renderDialog, renderButton } from "./render";
 
 export const render = async () => {
   const providers = randomSort(await fetchProviders());
-  renderButton("en");
-  renderButton("it");
-  renderDialog(providers);
-  const html = `
-    ${renderButton("en")}
+  renderButton("en", "cie");
+  renderButton("it", "cie");
+  renderButton("en", "spid");
+  renderButton("it", "spid");
+  const appHtml = `
+    ${renderButton("it", "spid")}
     <br />
-    ${renderButton("it")}
+    ${renderButton("en", "spid")}
+    <br />
+    ${renderButton("it", "cie")}
+    <br />
+    ${renderButton("en", "cie")}
     ${renderDialog(providers)}
   `;
-  return { html };
+  return { appHtml };
 };

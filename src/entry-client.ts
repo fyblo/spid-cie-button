@@ -1,4 +1,5 @@
 import "./spid-button.css";
+import "./spid-ico-circle-bb.svg";
 
 /**
  * Initializes the SPID dialog and adds event listeners to the buttons
