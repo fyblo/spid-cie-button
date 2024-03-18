@@ -1,5 +1,4 @@
 import "./spid-button.css";
-import "./spid-ico-circle-bb.svg";
 
 /**
  * Initializes the SPID dialog and adds event listeners to the buttons
@@ -26,4 +25,5 @@ export const initDialog = () => {
   return spidDialog;
 };
 
-console.log("Test");
+initDialog();
+console.debug("[DEBUG]: client-side SPID/CIE behaviour initialized.");

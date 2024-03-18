@@ -2,12 +2,12 @@ import { fetchProviders } from "./providers";
 import { randomSort } from "./utils";
 import { renderDialog, renderButton } from "./render";
 
+/**
+ * We want to render all the possible combinations of buttons, that is why we render it 4 times, once for each combination of language and type
+ * @returns the HTML for the SPID/CIE buttons and dialog
+ */
 export const render = async () => {
   const providers = randomSort(await fetchProviders());
-  renderButton("en", "cie");
-  renderButton("it", "cie");
-  renderButton("en", "spid");
-  renderButton("it", "spid");
   const appHtml = `
     ${renderButton("it", "spid")}
     <br />

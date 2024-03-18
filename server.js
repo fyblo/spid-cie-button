@@ -1,15 +1,21 @@
 import { createServer as createViteServer } from "vite";
 import { createServer } from "node:http";
 import { fileURLToPath, URL } from "node:url";
-import fs from "node:fs";
-import path from "node:path";
+import { readFileSync } from "node:fs";
+import { dirname, resolve } from "node:path";
 
-const __dirname = path.dirname(fileURLToPath(import.meta.url));
+const __dirname = dirname(fileURLToPath(import.meta.url));
 
 const port = 3000;
 const host = "localhost";
 
-async function createRequestListener() {
+/**
+ * Create a request listener for the server.
+ * We use Vite as a middleware to serve the files and handle the requests.
+ * We use standard Node.js HTTP server to handle the requests.
+ * @returns {Promise<import('http').RequestListener>}
+ */
+const createRequestListener = async () => {
   const vite = await createViteServer({
     server: { middlewareMode: true },
     appType: "custom",
@@ -36,11 +42,9 @@ async function createRequestListener() {
         serveUrl = "/index.html";
       }
 
-      console.log("Serving URL", serveUrl);
-
       if (serveUrl.endsWith(".html")) {
-        const template = fs.readFileSync(
-          path.resolve(__dirname, "./index.html"),
+        const template = readFileSync(
+          resolve(__dirname, "./index.html"),
           "utf-8",
         );
 
@@ -52,7 +56,10 @@ async function createRequestListener() {
         const { render } = await vite.ssrLoadModule("/src/entry-server.ts");
         const { appHtml } = await render();
 
-        const html = transformedTemplate.replace("<!--ssr-outlet-->", appHtml);
+        const html = transformedTemplate.replace(
+          "<!--spid-cie-button-ssr-outlet-->",
+          appHtml,
+        );
 
         res.setHeader("Content-Type", "text/html");
         res.writeHead(200);
@@ -66,8 +73,11 @@ async function createRequestListener() {
       res.end(err.message);
     }
   };
-}
+};
 
+/**
+ * Start the server
+ */
 createRequestListener().then((requestListener) => {
   const server = createServer(requestListener);
   server.listen(port, host, () => {

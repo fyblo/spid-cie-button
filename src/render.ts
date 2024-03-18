@@ -2,6 +2,11 @@ import type { Provider } from "./providers";
 import spidLogo from "./spid-ico-circle-bb.svg";
 import cieLogo from "./logo_cie_id.svg";
 
+/**
+ * Returns the HTML for the SPID dialog
+ * @param providers the list of SPID providers
+ * @returns the HTML for the dialog
+ */
 export const renderDialog = (providers: Provider[]) => {
   return `
     <dialog id="spid-dialog">
@@ -12,6 +17,11 @@ export const renderDialog = (providers: Provider[]) => {
   `;
 };
 
+/**
+ * Returns the HTML for the list of SPID providers
+ * @param providers the list of SPID providers
+ * @returns the HTML for the list
+ */
 const renderProviders = (providers: Provider[]) => {
   let list = "";
 
@@ -26,19 +36,6 @@ const renderProviders = (providers: Provider[]) => {
   }
   return list;
 };
-
-/**
- * Returns the HTML for a SPID/CIE button
- * @param alt the alt text for the button's image
- * @param label the label for the button
- * @returns
- */
-const btnTemplate = (logo: string, alt: string, label: string) => `
-      <button class="spid-button">
-        <img src="${logo}" alt="${alt}" />
-        <p>${label}</p>
-      </button>
-`;
 
 /**
  * Returns the HTML for a SPID button, based on the language
@@ -62,26 +59,14 @@ export const renderButton = (lang: "it" | "en", type: "spid" | "cie") => {
 };
 
 /**
- * Generates a new SPID button at the target. It also generates the SPID dialog, if it doesn't exist yet
- * @param targetId the id of the element to append the cloned template to
- * @param lang the language of the button to clone (`eng` or `ita`)
+ * Returns the HTML for a SPID/CIE button
+ * @param alt the alt text for the button's image
+ * @param label the label for the button
+ * @returns
  */
-export const createButton = (targetId: string, lang: string) => {
-  const btnTemplate = document.querySelector(
-    `#template-spid-button-${lang}`,
-  ) as HTMLTemplateElement;
-  const dialogTemplate = document.querySelector(
-    "#template-spid-dialog",
-  ) as HTMLTemplateElement;
-
-  const clonedBtn = btnTemplate.content.cloneNode(true);
-  const clonedDialog = dialogTemplate.content.cloneNode(true);
-
-  const target = document.querySelector(`#${targetId}`);
-  if (!target) throw new Error(`Element with id ${targetId} not found`);
-  target.appendChild(clonedBtn);
-
-  if (!document.querySelector("#spid-dialog")) {
-    document.body.appendChild(clonedDialog);
-  }
-};
+const btnTemplate = (logo: string, alt: string, label: string) => `
+      <button class="spid-button">
+        <img src="${logo}" alt="${alt}" />
+        <p>${label}</p>
+      </button>
+`;

@@ -1,9 +1,19 @@
 {
   "name": "@fyblo/spid-cie-button",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "author": "Fyblo s.r.l. (https://fyblo.com)",
+  "license": "SEE LICENSE IN LICENSE.md",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fyblo/spid-cie-button.git"
+  },
+  "bugs": {
+    "url": "https://github.com/fyblo/spid-cie-button/issues"
+  },
+  "homepage": "https://github.com/fyblo/spid-cie-button#readme",
+  "description": "A web component to authenticate with SPID and CIE",
   "type": "module",
+  "version": "0.1.0",
+  "main": "server.js",
   "scripts": {
     "dev": "pnpm exec prettier . --write && node server",
     "build": "npm run build:client && npm run build:server",
@@ -12,9 +22,13 @@
     "preview": "NODE_ENV=production node server",
     "test": "vitest"
   },
-  "keywords": [],
-  "author": "",
-  "license": "SEE LICENSE IN LICENSE.md",
+  "keywords": [
+    "SPID",
+    "CIE",
+    "Button",
+    "Web Component",
+    "authentication"
+  ],
   "devDependencies": {
     "@types/node": "^20.11.28",
     "prettier": "^3.2.5",
