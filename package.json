@@ -25,7 +25,7 @@
     "build:client": "vite build --ssrManifest --outDir dist/client",
     "build:server": "vite build --ssr src/entry-server.ts --outDir dist/server",
     "preview": "NODE_ENV=production node server",
-    "publish": "pnpm build && npm publish",
+    "release": "pnpm build && npm publish",
     "test": "vitest"
   },
   "keywords": [
