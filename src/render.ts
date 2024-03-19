@@ -8,17 +8,20 @@ import cieLogo from "./logo_cie_id.svg";
  */
 export type RPEndpoint = (orgName: string) => string;
 
+type DialogInput = {
+  lang: "en" | "it";
+  providers: Provider[];
+  rpEndpoint: RPEndpoint;
+};
+
 /**
  * Returns the HTML for the SPID dialog
+ * @param lang the language of the dialog (`en` or `it`)
  * @param providers the list of SPID providers
  * @param rpEndpoint the endpoint for the relaying party that should receive the request
  * @returns the HTML for the dialog
  */
-export const renderDialog = (
-  lang: "en" | "it",
-  providers: Provider[],
-  rpEndpoint: RPEndpoint,
-) => {
+export const renderDialog = ({ lang, providers, rpEndpoint }: DialogInput) => {
   return /*html*/ `
     <dialog id="spid-dialog">
       <ul class="spid-providers">
@@ -57,6 +60,19 @@ const renderHelpLinks = (lang: "en" | "it") => {
 const renderProviders = (providers: Provider[], rpEndpoint: RPEndpoint) => {
   let list = "";
 
+  console.log("SPID_DEVELOPMENT_MODE", process?.env.SPID_DEVELOPMENT_MODE);
+
+  if (process?.env.SPID_DEVELOPMENT_MODE === "true") {
+    const provider = { organization_name: "DEMO" };
+    list += /*html*/ `
+    <li data-idp-name="${provider.organization_name}">
+        <a href="${rpEndpoint(provider.organization_name)}" target="_blank">
+            ${provider.organization_name}
+        </a>
+    </li>
+    `;
+  }
+
   for (const provider of providers) {
     list += /*html*/ `
     <li data-idp-name="${provider.organization_name}">
@@ -69,12 +85,18 @@ const renderProviders = (providers: Provider[], rpEndpoint: RPEndpoint) => {
   return list;
 };
 
+type ButtonInput = {
+  lang: "en" | "it";
+  type: "spid" | "cie";
+};
+
 /**
  * Returns the HTML for a SPID button, based on the language
  * @param lang the language of the button (`en` or `it`)
+ * @param type the type of the button (`spid` or `cie`)
  * @returns the HTML for the button
  */
-export const renderButton = (lang: "it" | "en", type: "spid" | "cie") => {
+export const renderButton = ({ lang, type }: ButtonInput) => {
   if (lang === "en" && type === "spid") {
     return btnTemplate(spidLogo, "SPID logo", "Enter via SPID");
   }

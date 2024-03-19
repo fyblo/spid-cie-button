@@ -12,7 +12,7 @@
   "homepage": "https://github.com/fyblo/spid-cie-button#readme",
   "description": "A web component to authenticate with SPID and CIE",
   "type": "module",
-  "version": "0.3.0",
+  "version": "1.0.0",
   "files": [
     "dist"
   ],

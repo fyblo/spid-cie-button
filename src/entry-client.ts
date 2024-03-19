@@ -15,6 +15,8 @@ export const initDialog = () => {
 
   for (const button of spidButton) {
     button.addEventListener("click", () => {
+      console.log("spidDialog open");
+      document.body.style.overflow = "hidden";
       spidDialog.showModal();
     });
   }
@@ -23,6 +25,11 @@ export const initDialog = () => {
     if (event.target === spidDialog) {
       spidDialog.close();
     }
+  });
+
+  spidDialog.addEventListener("close", () => {
+    document.body.style.overflow = "auto";
+    console.log("spidDialog close");
   });
 
   spidSearch.addEventListener("input", (event) => {

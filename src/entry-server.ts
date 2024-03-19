@@ -5,7 +5,10 @@ import stylesheet from "./spid-button.css?inline";
 
 export { renderButton } from "./render";
 
-type Language = "it" | "en";
+type RenderDialogInput = {
+  lang: "it" | "en";
+  rpEndpoint: RPEndpoint;
+};
 
 /**
  * Returns the SPID dialog, where the IDPs are randomized
@@ -13,9 +16,9 @@ type Language = "it" | "en";
  * @param rpEndpoint the endpoint for the relaying party that should receive the request, based on the organization name
  * @returns the HTML for the SPID dialog
  */
-export const renderDialog = async (lang: Language, rpEndpoint: RPEndpoint) => {
+export const renderDialog = async ({ lang, rpEndpoint }: RenderDialogInput) => {
   const providers = randomSort(await fetchProviders());
-  return _renderDialog(lang, providers, rpEndpoint);
+  return _renderDialog({ lang, providers, rpEndpoint });
 };
 
 /**
