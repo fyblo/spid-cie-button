@@ -39,7 +39,7 @@ import { renderButton, renderDialog, renderHead } from "spid-cie-button/server";
 const head = renderHead(); // returns the style tag, that should be included in the head of the page to avoid layout shifts
 const button = renderButton({ lang: "it", type: "spid" }); // returns the HTML of the button element, with the specified language ("it" or "en") and type ("spid" vs "cie")
 
-const rpEndpoint = (idp: string) => "https://example.com/spid?idp=${idp}";
+const rpEndpoint = (idp: string) => `https://example.com/spid?idp=${idp}`;
 const dialog = renderDialog({ lang: "it", rpEndpoint }); // returns the HTML of the SPID dialog, with the specified language ("it" or "en") and where the actions are controlled by the `rpEndpoint` function
 ```
 
@@ -113,7 +113,7 @@ import { renderButton, renderDialog, renderHead } from "spid-cie-button/server";
 
 const head = renderHead();
 const button = renderButton({ lang: "it", type: "spid" });
-const rpEndpoint = (idp: string) => "https://example.com/spid?idp=${idp}";
+const rpEndpoint = (idp: string) => `https://example.com/spid?idp=${idp}`;
 const dialog = renderDialog({ lang: "it", rpEndpoint });
 
 const html = head + button + dialog;
