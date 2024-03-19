@@ -30,7 +30,6 @@ export const initDialog = () => {
 
   spidDialog.addEventListener("close", () => {
     document.body.style.overflow = "auto";
-    console.log("spidDialog close");
   });
 
   spidSearch.addEventListener("input", (event) => {
@@ -38,8 +37,6 @@ export const initDialog = () => {
     const providers = document.querySelectorAll(
       ".spid-providers li:not(.spid-idp-search)",
     ) as NodeListOf<HTMLLIElement>;
-
-    console.log("searchWord", searchWord);
 
     filterProviders(searchWord.toLowerCase(), providers);
   });
