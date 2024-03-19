@@ -55,7 +55,9 @@ const createRequestListener = async () => {
 
         const { renderDialog, renderButton, renderHead } =
           await vite.ssrLoadModule("/src/entry-server.ts");
-        const appDialog = await renderDialog();
+        const endpoint = (idp) =>
+          `https://example.com/proxy.php?client_id=SOME_CLIENT_ID&action=login&redirect_uri=SOME_REDIRECT_URI&idp=${idp}&state=SOME_STATE`;
+        const appDialog = await renderDialog("it", endpoint);
         const appButton = await renderButton("it", "spid");
         const appHeadHtml = await renderHead();
 

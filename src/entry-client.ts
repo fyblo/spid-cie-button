@@ -9,6 +9,9 @@ export const initDialog = () => {
     "#spid-dialog",
   ) as HTMLDialogElement;
   const spidButton = document.querySelectorAll(".spid-button");
+  const spidSearch = document.querySelector(
+    "#spid-dialog input[type=search]",
+  ) as HTMLInputElement;
 
   for (const button of spidButton) {
     button.addEventListener("click", () => {
@@ -22,7 +25,31 @@ export const initDialog = () => {
     }
   });
 
+  spidSearch.addEventListener("input", (event) => {
+    const searchWord = (event.target as HTMLInputElement).value;
+    const providers = document.querySelectorAll(
+      ".spid-providers li:not(.spid-idp-search)",
+    ) as NodeListOf<HTMLLIElement>;
+
+    console.log("searchWord", searchWord);
+
+    filterProviders(searchWord.toLowerCase(), providers);
+  });
+
   return spidDialog;
+};
+
+const filterProviders = (
+  word: string,
+  providers: NodeListOf<HTMLLIElement>,
+) => {
+  for (const provider of providers) {
+    if (provider.dataset.idpName?.toLowerCase().includes(word)) {
+      provider.style.display = "block";
+    } else {
+      provider.style.display = "none";
+    }
+  }
 };
 
 export default {

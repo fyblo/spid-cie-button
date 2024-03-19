@@ -16,6 +16,38 @@
   --spid-base-img-size: 3rem;
 }
 
+.spid-idp-search {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  width: calc(var(--spid-base-img-size) * 10 * var(--spid-button-scale));
+}
+
+.spid-idp-search input {
+  flex-grow: 1;
+  padding: 0.5rem;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 0.25rem;
+}
+
+.spid-idp-search a {
+  font-family: "Titillium Web", sans-serif;
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  border-radius: 0.25rem;
+  background-color: var(--spid-button-background);
+  color: var(--spid-button-color);
+}
+
+.spid-idp-search a:hover,
+.spid-idp-search a:focus,
+.spid-idp-search a:active {
+  background-color: var(--spid-button-background-hover);
+  color: var(--spid-button-color-active);
+}
+
 .spid-button {
   font-family: "Titillium Web", sans-serif;
   background-color: var(--spid-button-background);

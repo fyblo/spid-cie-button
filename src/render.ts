@@ -3,18 +3,50 @@ import spidLogo from "./spid-ico-circle-bb.svg";
 import cieLogo from "./logo_cie_id.svg";
 
 /**
+ * The endpoint for the relaying party that should receive the request,
+ * based on the organization name
+ */
+export type RPEndpoint = (orgName: string) => string;
+
+/**
  * Returns the HTML for the SPID dialog
  * @param providers the list of SPID providers
+ * @param rpEndpoint the endpoint for the relaying party that should receive the request
  * @returns the HTML for the dialog
  */
-export const renderDialog = (providers: Provider[]) => {
-  return `
+export const renderDialog = (
+  lang: "en" | "it",
+  providers: Provider[],
+  rpEndpoint: RPEndpoint,
+) => {
+  return /*html*/ `
     <dialog id="spid-dialog">
       <ul class="spid-providers">
-      ${renderProviders(providers)}
+      ${renderHelpLinks(lang)}
+      ${renderProviders(providers, rpEndpoint)}
       </ul>
     </dialog>
   `;
+};
+
+const renderHelpLinks = (lang: "en" | "it") => {
+  if (lang === "en") {
+    return /*html*/ `
+      <li class="spid-idp-search">
+        <input type="search" placeholder="Filter providers" />
+        <a href="https://www.spid.gov.it/en" target="_blank">SPID?</a>
+      </li>
+    `;
+  }
+  if (lang === "it") {
+    return /*html*/ `
+      <li class="spid-idp-search">
+      <input type="search" placeholder="Filtra provider" autofocus/>
+        <a href="https://www.spid.gov.it" target="_blank">SPID?</a>
+      </li>
+    `;
+  }
+  throw new Error(`Language ${lang} not supported`);
 };
 
 /**
@@ -22,13 +54,13 @@ export const renderDialog = (providers: Provider[]) => {
  * @param providers the list of SPID providers
  * @returns the HTML for the list
  */
-const renderProviders = (providers: Provider[]) => {
+const renderProviders = (providers: Provider[], rpEndpoint: RPEndpoint) => {
   let list = "";
 
   for (const provider of providers) {
-    list += `
-    <li>
-        <a href="${provider.registry_link}" target="_blank">
+    list += /*html*/ `
+    <li data-idp-name="${provider.organization_name}">
+        <a href="${rpEndpoint(provider.organization_name)}" target="_blank">
             <img src="${provider.logo_uri}" alt="${provider.organization_name}">
         </a>
     </li>
@@ -64,7 +96,7 @@ export const renderButton = (lang: "it" | "en", type: "spid" | "cie") => {
  * @param label the label for the button
  * @returns
  */
-const btnTemplate = (logo: string, alt: string, label: string) => `
+const btnTemplate = (logo: string, alt: string, label: string) => /*html*/ `
       <button class="spid-button">
         <img src="${logo}" alt="${alt}" />
         <p>${label}</p>
