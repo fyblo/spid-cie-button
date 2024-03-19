@@ -54,7 +54,7 @@ initDialog(); // initializes the dialog, making it interactive
 The following `env` variable adds a Demo IDP to the list of IDPs:
 
 ```env
-SPID_DEVELOPMENT_MODE=true
+VITE_SPID_DEVELOPMENT_MODE=true
 ```
 
 ### Style Customization
@@ -146,5 +146,5 @@ pnpm dev
 To include the demo endpoint in the list of IDPs, you can run the following command:
 
 ```bash
-SPID_DEVELOPMENT_MODE=true pnpm dev
+VITE_SPID_DEVELOPMENT_MODE=true pnpm dev
 ```

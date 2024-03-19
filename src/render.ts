@@ -60,9 +60,7 @@ const renderHelpLinks = (lang: "en" | "it") => {
 const renderProviders = (providers: Provider[], rpEndpoint: RPEndpoint) => {
   let list = "";
 
-  console.log("SPID_DEVELOPMENT_MODE", process?.env.SPID_DEVELOPMENT_MODE);
-
-  if (process?.env.SPID_DEVELOPMENT_MODE === "true") {
+  if (import.meta.env.VITE_SPID_DEVELOPMENT_MODE === "true") {
     const provider = { organization_name: "DEMO" };
     list += /*html*/ `
     <li data-idp-name="${provider.organization_name}">
