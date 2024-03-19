@@ -12,7 +12,7 @@ This project is inspired by [italia/spid-sp-access-button](https://github.com/it
 - It is provided as a standard npm package and can be used in any project
 - It is designed to be easily customizable via CSS variables (see [Usage](#usage))
 - It takes into account modern standards for accessibility and usability (e.g. it is keyboard navigable, screen reader friendly, dark-mode compatible, it scales up and down with the browser's zoom level) and, as such, it does not support Internet Explorer.
-- It takes sensible care of performances (e.g. only the required font glyphs are loaded), i.e. the bundle size is approx ~90% smaller than [italia/spid-sp-access-button](https://github.com/italia/spid-sp-access-button).
+- It takes sensible care of performances (e.g. only the required font glyphs are loaded), i.e. the bundle size is approx ~95% smaller than [italia/spid-sp-access-button](https://github.com/italia/spid-sp-access-button).
 - It supports SSR, to minimize the Javascript code delivered to the client
 
 ## Usage
