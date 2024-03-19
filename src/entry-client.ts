@@ -15,9 +15,10 @@ export const initDialog = () => {
 
   for (const button of spidButton) {
     button.addEventListener("click", () => {
-      console.log("spidDialog open");
+      const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
       document.body.style.overflow = "hidden";
       spidDialog.showModal();
+      if (isMobile) spidSearch.blur();
     });
   }
 
