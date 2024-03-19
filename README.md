@@ -86,7 +86,7 @@ import { initDialog } from "spid-cie-button";
 export default function SpidButton() {
   const head = renderHead();
   const button = renderButton({ lang: "it", type: "spid" });
-  const rpEndpoint = (idp: string) => "https://example.com/spid?idp=${idp}";
+  const rpEndpoint = (idp: string) => `https://example.com/spid?idp=${idp}`;
   const dialog = renderDialog({ lang: "it", rpEndpoint });
   useEffect(() => {
     initDialog();
