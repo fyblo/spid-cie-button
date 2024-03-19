@@ -12,7 +12,7 @@
   "homepage": "https://github.com/fyblo/spid-cie-button#readme",
   "description": "A web component to authenticate with SPID and CIE",
   "type": "module",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "files": [
     "dist"
   ],
@@ -43,6 +43,7 @@
     }
   },
   "scripts": {
+    "changes": " pnpm changelog --exclude chore,build,ci",
     "prettify": "pnpm exec prettier . --write",
     "dev": "pnpm prettify && node server",
     "build": "pnpm build:client && pnpm build:server",
