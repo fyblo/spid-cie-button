@@ -1,3 +1,9 @@
+#### 1.0.4 (2024-03-30)
+
+##### New Features
+
+*  added optional validator and endpoint IDPs ([b4faaf80](https://github.com/fyblo/spid-cie-button/commit/b4faaf80d8c78dd661436e384da17c27f09b0bf2))
+
 #### 1.0.3 (2024-03-19)
 
 ##### Bug Fixes
