@@ -58,7 +58,12 @@ const createRequestListener = async () => {
         const rpEndpoint = (idp) =>
           `https://example.com/proxy.php?client_id=SOME_CLIENT_ID&action=login&redirect_uri=SOME_REDIRECT_URI&idp=${idp}&state=SOME_STATE`;
         const lang = "it";
-        const appDialog = await renderDialog({ lang, rpEndpoint });
+        const appDialog = await renderDialog({
+          lang,
+          rpEndpoint,
+          targetSelf: true,
+          withDemo: true,
+        });
         const appButton = await renderButton({ lang, type: "spid" });
         const appHeadHtml = await renderHead();
 

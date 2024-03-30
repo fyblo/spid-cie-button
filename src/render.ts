@@ -8,10 +8,13 @@ import cieLogo from "./logo_cie_id.svg";
  */
 export type RPEndpoint = (orgName: string) => string;
 
-type DialogInput = {
+export type DialogInput = {
   lang: "en" | "it";
   providers: Provider[];
   rpEndpoint: RPEndpoint;
+  targetSelf?: boolean;
+  withDemo?: boolean;
+  withValidator?: boolean;
 };
 
 /**
@@ -21,12 +24,12 @@ type DialogInput = {
  * @param rpEndpoint the endpoint for the relaying party that should receive the request
  * @returns the HTML for the dialog
  */
-export const renderDialog = ({ lang, providers, rpEndpoint }: DialogInput) => {
+export const renderDialog = (input: DialogInput) => {
   return /*html*/ `
     <dialog id="spid-dialog">
       <ul class="spid-providers">
-      ${renderHelpLinks(lang)}
-      ${renderProviders(providers, rpEndpoint)}
+      ${renderHelpLinks(input.lang)}
+      ${renderProviders(input)}
       </ul>
     </dialog>
   `;
@@ -52,29 +55,49 @@ const renderHelpLinks = (lang: "en" | "it") => {
   throw new Error(`Language ${lang} not supported`);
 };
 
+type ProvidersInput = {
+  providers: Provider[];
+  rpEndpoint: RPEndpoint;
+  withDemo?: boolean;
+  withValidator?: boolean;
+  targetSelf?: boolean;
+};
 /**
  * Returns the HTML for the list of SPID providers
  * @param providers the list of SPID providers
  * @returns the HTML for the list
  */
-const renderProviders = (providers: Provider[], rpEndpoint: RPEndpoint) => {
+const renderProviders = (opts: ProvidersInput) => {
   let list = "";
+  
+  const extras = []
 
-  if (import.meta.env.VITE_SPID_DEVELOPMENT_MODE === "true") {
-    const provider = { organization_name: "DEMO" };
+  if (import.meta.env.VITE_SPID_DEVELOPMENT_MODE === "true" || opts.withDemo) {
+    extras.push({ organization_name: "DEMO" });
+  }
+  if (opts.withValidator) {
+    extras.push({ organization_name: "VALIDATOR" });
+  }
+  if( opts.withDemo && opts.withValidator){ 
+    extras.push({ organization_name: "DEMOVALIDATOR" });
+  }
+
+  for (const provider of extras) {
     list += /*html*/ `
     <li data-idp-name="${provider.organization_name}">
-        <a href="${rpEndpoint(provider.organization_name)}" target="_blank">
+        <a href="${opts.rpEndpoint(provider.organization_name)}" 
+            ${opts.targetSelf ? "" : 'target="_blank"'}>
             ${provider.organization_name}
         </a>
     </li>
     `;
   }
 
-  for (const provider of providers) {
+  for (const provider of opts.providers) {
     list += /*html*/ `
     <li data-idp-name="${provider.organization_name}">
-        <a href="${rpEndpoint(provider.organization_name)}" target="_blank">
+        <a href="${opts.rpEndpoint(provider.organization_name)}" 
+            ${opts.targetSelf ? "" : 'target="_blank"'}>
             <img src="${provider.logo_uri}" alt="${provider.organization_name}">
         </a>
     </li>

@@ -43,6 +43,16 @@ const rpEndpoint = (idp: string) => `https://example.com/spid?idp=${idp}`;
 const dialog = renderDialog({ lang: "it", rpEndpoint }); // returns the HTML of the SPID dialog, with the specified language ("it" or "en") and where the actions are controlled by the `rpEndpoint` function
 ```
 
+Render dialog accepts extra options to control whether demo and validator endpoint should be added or not:
+```ts
+export type DialogInputExtraOptions = {
+  targetSelf?: boolean; // whether it should open a new page on provider click (target='_blank' vs target='_self') or not
+  withDemo?: boolean; // whether it should add the demo provider or not
+  withValidator?: boolean; // whether it should add the validator provider or not
+};
+```
+Note that if both `withDemo` and `withValidator` are `true`, an extra Demo provider with validator mode is added.
+
 For the interactions client-side, the following API is available:
 
 ```ts

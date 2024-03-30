@@ -1,14 +1,11 @@
 import { fetchProviders } from "./providers";
 import { randomSort } from "./utils";
-import { renderDialog as _renderDialog, type RPEndpoint } from "./render";
+import { renderDialog as _renderDialog, type DialogInput, type RPEndpoint } from "./render";
 import stylesheet from "./spid-button.css?inline";
 
 export { renderButton } from "./render";
 
-type RenderDialogInput = {
-  lang: "it" | "en";
-  rpEndpoint: RPEndpoint;
-};
+type RenderDialogInput = Omit<DialogInput, "providers">;
 
 /**
  * Returns the SPID dialog, where the IDPs are randomized
@@ -16,9 +13,9 @@ type RenderDialogInput = {
  * @param rpEndpoint the endpoint for the relaying party that should receive the request, based on the organization name
  * @returns the HTML for the SPID dialog
  */
-export const renderDialog = async ({ lang, rpEndpoint }: RenderDialogInput) => {
+export const renderDialog = async (options: RenderDialogInput) => {
   const providers = randomSort(await fetchProviders());
-  return _renderDialog({ lang, providers, rpEndpoint });
+  return _renderDialog({ providers, ...options });
 };
 
 /**
