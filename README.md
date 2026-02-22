@@ -3,7 +3,7 @@
 Opinionated component to support SPID and CIE login buttons according to the Italian government's standards.
 
 > [!WARNING]  
-> the CIE button is still under development
+> Please check (https://github.com/ennioVisco/spid-cie-button)[https://github.com/ennioVisco/spid-cie-button]
 
 This project is inspired by [italia/spid-sp-access-button](https://github.com/italia/spid-sp-access-button), with a few key differences:
 
